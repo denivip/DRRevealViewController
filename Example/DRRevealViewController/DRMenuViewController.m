@@ -216,11 +216,7 @@
 
 - (UIView *)getSnapshotView
 {
-    NSLog(@"self.view.frame: %@", NSStringFromCGRect(self.view.frame));
-    NSLog(@"[UIScreen mainScreen].bounds: %@", NSStringFromCGRect([UIScreen mainScreen].bounds));
     UIView *snapshotView = [self.view snapshotViewAfterScreenUpdates:YES];
-    NSLog(@"self.view.frame: %@", NSStringFromCGRect(self.view.frame));
-    NSLog(@"[UIScreen mainScreen].bounds: %@", NSStringFromCGRect([UIScreen mainScreen].bounds));
     return snapshotView;
 }
 

@@ -10,14 +10,13 @@
 #import <DRRevealViewController/DRRevealViewController.h>
 #import "DRMenuViewController.h"
 #import "DRFrontViewController.h"
+#import <Fingertips/MBFingerTipWindow.h>
 
 @implementation DRAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
-    
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window = [[MBFingerTipWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
     self.firstViewController = [storyBoard instantiateViewControllerWithIdentifier:@"FirstView"];
     self.firstViewController.title = @"First View";
@@ -32,8 +31,31 @@
     [self.window makeKeyAndVisible];
     
     return YES;
+    
+    
+    
+    /*
+    // Fingertips
+    CGRect frame = [[UIScreen mainScreen] bounds];
+    self.window = [[MBFingerTipWindow alloc] initWithFrame:frame];
+    
+    // Create reveal view controller
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+    self.firstViewController = [storyBoard instantiateViewControllerWithIdentifier:@"FirstView"];
+    self.firstViewController.title = @"First View";
+    self.secondViewController = [storyBoard instantiateViewControllerWithIdentifier:@"SecondView"];
+    self.secondViewController.title = @"Second View";
+    self.menuViewController = [storyBoard instantiateViewControllerWithIdentifier:@"MenuView"];
+    
+    DRRevealViewController *revealViewController = [[DRRevealViewController alloc] initWithLeftViewController:self.menuViewController
+                                                                            andWrapNeedingFrontViewController:self.firstViewController];
+    self.window.rootViewController = revealViewController;
+    
+    [self.window makeKeyAndVisible];
+    
+    return YES;*/
 }
-							
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

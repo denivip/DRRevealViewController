@@ -5,6 +5,11 @@
 [![License](https://img.shields.io/cocoapods/l/DRRevealViewController.svg?style=flat)](http://cocoadocs.org/docsets/DRRevealViewController)
 [![Platform](https://img.shields.io/cocoapods/p/DRRevealViewController.svg?style=flat)](http://cocoadocs.org/docsets/DRRevealViewController)
 
+## Demo
+
+![alt tag](https://raw.github.com/runemalm/DRRevealViewController/branch/path/to/img.png)
+![alt tag](https://raw.githubusercontent.com/runemalm/DRRevealViewController/develop/Example/demo.gif)
+
 ## Usage
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
