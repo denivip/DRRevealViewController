@@ -17,6 +17,10 @@ Typical use case includes a "sliding menu" like in the Eurosport iPhone app (see
 * Implement menu similar to Facebook's or Eurosport's iPhone apps.
 * Easily customize the reveal animations by implementing delegate 'revealWithPercent' method.
 
+## Version
+
+Version 0.0.1
+
 ## Usage
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
