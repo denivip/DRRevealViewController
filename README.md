@@ -7,8 +7,15 @@
 
 ## Demo
 
-![alt tag](https://raw.github.com/runemalm/DRRevealViewController/branch/path/to/img.png)
 ![alt tag](https://raw.githubusercontent.com/runemalm/DRRevealViewController/develop/Example/demo.gif)
+
+## Description
+
+Use the DRRevealViewController when you want a way of revealing view controllers that exists behind a front view controller.
+Typical use case includes a "sliding menu" like in the Eurosport iPhone app (see demo above).
+
+* Implement menu similar to Facebook's or Eurosport's iPhone apps.
+* Easily customize the reveal animations by implementing delegate 'revealWithPercent' method.
 
 ## Usage
 
