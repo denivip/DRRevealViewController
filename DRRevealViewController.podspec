@@ -77,7 +77,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/runemalm/DRRevealViewController.git", :commit => "2d65774caef70de88b825ecaddec725d4b10037a" }
+  s.source       = { :git => "https://github.com/runemalm/DRRevealViewController.git", :tag => "v0.0.1" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
