@@ -17,9 +17,32 @@ Typical use case includes a "sliding menu" like in the Eurosport iPhone app (see
 * Implement menu similar to Facebook's or Eurosport's iPhone apps.
 * Easily customize the reveal animations by implementing delegate 'revealWithPercent' method.
 
+## Version
+
+Version 0.0.1
+
 ## Usage
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
+
+Below is a quick example how your instantiation might look like:
+
+```objc      
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+    DRFrontViewController<DRRevealWrappedFrontControllerDelegate> *frontViewController = [storyBoard instantiateViewControllerWithIdentifier:@"FrontView"];
+    DRMenuViewController<DRRevealSideControllerDelegate> *menuViewController = [storyBoard instantiateViewControllerWithIdentifier:@"MenuView"];
+
+    DRRevealViewController *revealViewController = [[DRRevealViewController alloc] initWithLeftViewController:menuViewController
+                                                        andWrapNeedingFrontViewController:frontViewController];
+
+    self.window.rootViewController = revealViewController;
+    [self.window makeKeyAndVisible];
+
+    return YES;
+}
+```
 
 ## Requirements
 
