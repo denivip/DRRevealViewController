@@ -9,8 +9,8 @@
 // DRRevealViewController
 #define COCOAPODS_POD_AVAILABLE_DRRevealViewController
 #define COCOAPODS_VERSION_MAJOR_DRRevealViewController 0
-#define COCOAPODS_VERSION_MINOR_DRRevealViewController 1
-#define COCOAPODS_VERSION_PATCH_DRRevealViewController 0
+#define COCOAPODS_VERSION_MINOR_DRRevealViewController 0
+#define COCOAPODS_VERSION_PATCH_DRRevealViewController 1
 
 // Expecta
 #define COCOAPODS_POD_AVAILABLE_Expecta

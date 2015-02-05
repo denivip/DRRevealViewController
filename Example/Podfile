@@ -2,6 +2,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 target 'DRRevealViewController', :exclusive => true do
   pod "DRRevealViewController", :path => "../"
+  pod "Fingertips"
 end
 
 target 'Tests', :exclusive => true do
