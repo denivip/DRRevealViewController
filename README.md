@@ -25,6 +25,25 @@ Version 0.0.1
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
+Below is a quick example how your instantiation might look like:
+
+```objc      
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+    DRFrontViewController<DRRevealWrappedFrontControllerDelegate> *frontViewController = [storyBoard instantiateViewControllerWithIdentifier:@"FrontView"];
+    DRMenuViewController<DRRevealSideControllerDelegate> *menuViewController = [storyBoard instantiateViewControllerWithIdentifier:@"MenuView"];
+
+    DRRevealViewController *revealViewController = [[DRRevealViewController alloc] initWithLeftViewController:menuViewController
+                                                        andWrapNeedingFrontViewController:frontViewController];
+
+    self.window.rootViewController = revealViewController;
+    [self.window makeKeyAndVisible];
+
+    return YES;
+}
+```
+
 ## Requirements
 
 ## Installation
