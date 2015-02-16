@@ -124,11 +124,6 @@ typedef enum {
 
 @property (assign, nonatomic) DRRevealViewControllerPanToRevealLeftViewMode panToRevealLeftViewMode;
 
-//@property (assign, nonatomic) BOOL isFrontViewTapEnabled;
-//@property (assign, nonatomic) BOOL isFrontViewPanEnabled;
-//@property (assign, nonatomic) BOOL isFrontViewLeftEdgePanEnabled;
-
-
 - (id)initWithLeftViewController:(UIViewController<DRRevealSideControllerDelegate> *)leftViewController andFrontViewController:(UINavigationController<DRRevealFrontControllerDelegate> *)frontViewController;
 - (id)initWithLeftViewController:(UIViewController<DRRevealSideControllerDelegate> *)leftViewController andWrapNeedingFrontViewController:(UIViewController<DRRevealWrappedFrontControllerDelegate> *)frontViewController;
 - (void)setFrontViewController:(UINavigationController<DRRevealFrontControllerDelegate> *)frontViewController andRevealFrontView:(BOOL)revealFrontView;

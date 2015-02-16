@@ -1,5 +1,5 @@
 //
-//  MBRevealFrontNavigationController.h
+//  DRRevealFrontNavigationController.h
 //  Mebox Box UI Prototype
 //
 //  Created by David Runemalm on 2015-01-31.

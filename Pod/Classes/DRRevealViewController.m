@@ -12,8 +12,6 @@
 @interface DRRevealViewController ()
 
 @property (strong, nonatomic) UIBarButtonItem *leftRevealButton;
-//@property (strong, nonatomic) UITapGestureRecognizer *frontAnimatingViewTapGestureRecognizer;
-//@property (strong, nonatomic) UIPanGestureRecognizer *frontAnimatingViewPanGestureRecognizer;
 @property (strong, nonatomic) UITapGestureRecognizer *frontViewTapGestureRecognizer;
 @property (strong, nonatomic) UIPanGestureRecognizer *frontViewPanGestureRecognizer;
 @property (strong, nonatomic) UIScreenEdgePanGestureRecognizer *frontViewLeftScreenEdgePanGestureRecognizer;
@@ -59,8 +57,6 @@
                                                              style:UIBarButtonItemStyleBordered
                                                             target:self
                                                             action:@selector(didTapRevealLeftButton:)];
-//    self.frontAnimatingViewTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapFrontAnimatingView:)];
-//    self.frontAnimatingViewPanGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(didPanFrontAnimatingView:)];
     self.frontViewTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapFrontView:)];
     self.frontViewPanGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(didPanFrontView:)];
     self.frontViewLeftScreenEdgePanGestureRecognizer = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(didPanFrontViewLeftEdge:)];
