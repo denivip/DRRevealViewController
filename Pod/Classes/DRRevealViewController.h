@@ -25,6 +25,11 @@ typedef enum {
     DRRevealViewControllerDirectionRight
 } DRRevealViewControllerDirection;
 
+typedef enum {
+    DRRevealViewControllerPanToRevealLeftViewModeFull,
+    DRRevealViewControllerPanToRevealLeftViewModeEdge
+} DRRevealViewControllerPanToRevealLeftViewMode;
+
 #pragma mark - Forward declarations
 
 @class DRRevealViewController;
@@ -109,9 +114,20 @@ typedef enum {
 @property (strong, nonatomic) UINavigationController<DRRevealFrontControllerDelegate> *frontViewController;
 @property (strong, nonatomic) UIViewController<DRRevealWrappedFrontControllerDelegate> *wrappedFrontViewController;
 @property (readonly, nonatomic) BOOL isWrappingFrontViewController;
-@property (assign, nonatomic) BOOL isFrontViewControllerTapGestureRecognizerEnabled;
-@property (assign, nonatomic) BOOL isFrontViewControllerPanGestureRecognizerEnabled;
+
 @property (assign, nonatomic) BOOL isPanToRevealEnabled;
+@property (assign, nonatomic) BOOL isPanFrontViewEnabled;
+@property (assign, nonatomic) BOOL isPanFrontViewToRevealLeftViewEnabled;
+@property (assign, nonatomic) BOOL isPanFrontViewLeftEdgeToRevealEnabled;
+@property (assign, nonatomic) BOOL isTapFrontViewToConcealEnabled;
+@property (assign, nonatomic) BOOL isTapFrontViewToConcealLeftViewEnabled;
+
+@property (assign, nonatomic) DRRevealViewControllerPanToRevealLeftViewMode panToRevealLeftViewMode;
+
+//@property (assign, nonatomic) BOOL isFrontViewTapEnabled;
+//@property (assign, nonatomic) BOOL isFrontViewPanEnabled;
+//@property (assign, nonatomic) BOOL isFrontViewLeftEdgePanEnabled;
+
 
 - (id)initWithLeftViewController:(UIViewController<DRRevealSideControllerDelegate> *)leftViewController andFrontViewController:(UINavigationController<DRRevealFrontControllerDelegate> *)frontViewController;
 - (id)initWithLeftViewController:(UIViewController<DRRevealSideControllerDelegate> *)leftViewController andWrapNeedingFrontViewController:(UIViewController<DRRevealWrappedFrontControllerDelegate> *)frontViewController;

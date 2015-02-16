@@ -16,7 +16,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[MBFingerTipWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
     self.firstViewController = [storyBoard instantiateViewControllerWithIdentifier:@"FirstView"];
     self.firstViewController.title = @"First View";
@@ -26,6 +25,9 @@
     
     DRRevealViewController *revealViewController = [[DRRevealViewController alloc] initWithLeftViewController:self.menuViewController
                                                                             andWrapNeedingFrontViewController:self.firstViewController];
+    revealViewController.isPanToRevealEnabled = YES;
+    revealViewController.isPanFrontViewEnabled = YES;
+    revealViewController.panToRevealLeftViewMode = DRRevealViewControllerPanToRevealLeftViewModeEdge;
     
     self.window.rootViewController = revealViewController;
     [self.window makeKeyAndVisible];
