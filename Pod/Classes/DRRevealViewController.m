@@ -71,6 +71,11 @@
     self.revealDuration = 0.2;
 }
 
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
+
 - (id)initWithLeftViewController:(UIViewController<DRRevealSideControllerDelegate> *)leftViewController andFrontViewController:(UINavigationController<DRRevealFrontControllerDelegate> *)frontViewController
 {
     self = [self init];

@@ -29,6 +29,12 @@
 {
     self.concealRightXoffset = 85;
     self.concealRightYoffset = 100;
+    self.navigationBarHidden = YES;
+}
+
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
 }
 
 #pragma mark - DRRevealChildControllerDelegate
