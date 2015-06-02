@@ -11,7 +11,7 @@
 
 @interface DRRevealViewController ()
 
-@property (strong, nonatomic) UIBarButtonItem *leftRevealButton;
+//@property (strong, nonatomic) UIBarButtonItem *leftRevealButton;
 @property (strong, nonatomic) UITapGestureRecognizer *frontViewTapGestureRecognizer;
 @property (strong, nonatomic) UIPanGestureRecognizer *frontViewPanGestureRecognizer;
 @property (strong, nonatomic) UIScreenEdgePanGestureRecognizer *frontViewLeftScreenEdgePanGestureRecognizer;
@@ -52,11 +52,11 @@
 
 - (void)initProperties
 {
-    UIImage *buttonImage = [UIImage imageNamed:[NSString stringWithFormat:@"%@.bundle/%@", @"DRRevealViewController", @"menu_icon.png"]];
-    self.leftRevealButton = [[UIBarButtonItem alloc] initWithImage:buttonImage
-                                                             style:UIBarButtonItemStyleBordered
-                                                            target:self
-                                                            action:@selector(didTapRevealLeftButton:)];
+    //UIImage *buttonImage = [UIImage imageNamed:[NSString stringWithFormat:@"%@.bundle/%@", @"DRRevealViewController", @"menu_icon.png"]];
+    //self.leftRevealButton = [[UIBarButtonItem alloc] initWithImage:buttonImage
+    //                                                         style:UIBarButtonItemStyleBordered
+    //                                                        target:self
+    //                                                        action:@selector(didTapRevealLeftButton:)];
     self.frontViewTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapFrontView:)];
     self.frontViewPanGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(didPanFrontView:)];
     self.frontViewLeftScreenEdgePanGestureRecognizer = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(didPanFrontViewLeftEdge:)];
@@ -570,7 +570,7 @@
     [self.frontViewController.view addGestureRecognizer:self.frontViewLeftScreenEdgePanGestureRecognizer];
     
     // Add reveal buttons
-    self.frontViewController.visibleViewController.navigationItem.leftBarButtonItem = self.leftRevealButton;
+    //self.frontViewController.visibleViewController.navigationItem.leftBarButtonItem = self.leftRevealButton;
     
     // Add as child view controller
     CGRect frame = self.view.frame;

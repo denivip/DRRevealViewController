@@ -28,7 +28,8 @@
 - (void)initProperties
 {
     self.concealRightXoffset = 85;
-    self.concealRightYoffset = 100;
+    //self.concealRightYoffset = 100;
+    self.concealRightYoffset = 0;
     self.navigationBarHidden = YES;
 }
 
@@ -77,7 +78,11 @@
 
 - (void)willRevealToLeft
 {
-    
+    for (UIView *s in self.view.subviews) {
+        s.hidden = NO;
+    }
+    [self.animatingView removeFromSuperview];
+    self.animatingView = nil;
 }
 
 - (void)revealToLeft
