@@ -133,4 +133,5 @@ typedef enum {
 - (void)revealLeftView;
 - (void)revealFrontView;
 
++ (UIView*)getViewSnapshot:(UIView*)v;
 @end

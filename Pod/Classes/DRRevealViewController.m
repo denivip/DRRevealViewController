@@ -620,4 +620,18 @@
     [frontViewController didMoveToParentViewController:self];
 }
 
++ (UIView*)getViewSnapshot:(UIView*)v {
+    // Updates:YES -> Glitch in ios8!!!
+    // http://stackoverflow.com/questions/25873234/snapshotviewafterscreenupdates-glitch-on-ios-8
+    //UIView *snapshotView = [v snapshotViewAfterScreenUpdates:NO];
+    //return snapshotView;
+    
+    //UIGraphicsBeginImageContextWithOptions(v.bounds.size, v.opaque, 0.0);
+    UIGraphicsBeginImageContextWithOptions(v.bounds.size, NO, 0.0);
+    [v.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage * img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    UIImageView* iv = [[UIImageView alloc] initWithImage:img];
+    return iv;
+}
 @end

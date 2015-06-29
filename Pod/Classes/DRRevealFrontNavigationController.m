@@ -190,14 +190,14 @@
 
 - (UIView *)getSnapshotView
 {
-    UIView *snapshotView = [self.view snapshotViewAfterScreenUpdates:YES];
+    UIView *snapshotView = [DRRevealViewController getViewSnapshot:self.view];
     return snapshotView;
 }
 
 - (float)revealPercentFromDistance:(float)distance
 {
     CGRect frame = [self endFrameForRightConceal];
-    float percent = fabsf(distance / frame.origin.x);
+    double percent = fabs(distance / frame.origin.x);
     if ((1.0 - percent) < 0.01 && (1.0 - percent) > -0.01) {
         percent = 1.0;
     }
