@@ -52,7 +52,6 @@
 }
 
 #pragma mark - DRRevealFrontControllerDelegate
-
 - (void)willConcealToRight
 {
     // Prepare snapshot

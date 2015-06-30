@@ -211,9 +211,13 @@
             
         } else if (self.state == DRRevealViewControllerStateFrontVisible && self.panDirection == DRRevealViewControllerDirectionRight) {
             
-            self.state = DRRevealViewControllerStateTransitioningFrontToLeft;
-            [self.leftViewController willReveal];
-            [self.frontViewController willConcealToRight];
+            if([self.wrappedFrontViewController canConcealToRight]){
+                self.state = DRRevealViewControllerStateTransitioningFrontToLeft;
+                [self.leftViewController willReveal];
+                [self.frontViewController willConcealToRight];
+            }else{
+                self.state = DRRevealViewControllerStateCancelled;
+            }
         }
         
         // Save starting point
@@ -252,114 +256,13 @@
         }
         
     } else if (gesture.state == UIGestureRecognizerStateEnded || gesture.state == UIGestureRecognizerStateCancelled) {
-        
-        if (self.panDirection == DRRevealViewControllerDirectionLeft) {
-            [self revealFrontView];
-        } else {
-            [self revealLeftView];
+        if(self.state != DRRevealViewControllerStateCancelled){
+            if (self.panDirection == DRRevealViewControllerDirectionLeft) {
+                [self revealFrontView];
+            } else {
+                [self revealLeftView];
+            }
         }
-        
-        // TODO: Continue with same velocity (see example from DDMenuViewController below)
-        
-        /*
-         //  Finishing moving to left, right or root view with current pan velocity
-         [self.view setUserInteractionEnabled:NO];
-         
-         DDMenuPanCompletion completion = DDMenuPanCompletionRoot; // by default animate back to the root
-         
-         if (_panDirection == DDMenuPanDirectionRight && _menuFlags.showingLeftView) {
-         completion = DDMenuPanCompletionLeft;
-         } else if (_panDirection == DDMenuPanDirectionLeft && _menuFlags.showingRightView) {
-         completion = DDMenuPanCompletionRight;
-         }
-         
-         CGPoint velocity = [gesture velocityInView:self.view];
-         if (velocity.x < 0.0f) {
-         velocity.x *= -1.0f;
-         }
-         BOOL bounce = (velocity.x > 800);
-         CGFloat originX = _root.view.frame.origin.x;
-         CGFloat width = _root.view.frame.size.width;
-         CGFloat span = (width - kMenuOverlayWidth);
-         CGFloat duration = kMenuSlideDuration; // default duration with 0 velocity
-         
-         
-         if (bounce) {
-         duration = (span / velocity.x); // bouncing we'll use the current velocity to determine duration
-         } else {
-         duration = ((span - originX) / span) * duration; // user just moved a little, use the defult duration, otherwise it would be too slow
-         }
-         
-         [CATransaction begin];
-         [CATransaction setCompletionBlock:^{
-         if (completion == DDMenuPanCompletionLeft) {
-         [self showLeftController:NO];
-         } else if (completion == DDMenuPanCompletionRight) {
-         [self showRightController:NO];
-         } else {
-         [self showRootController:NO];
-         }
-         [_root.view.layer removeAllAnimations];
-         [self.view setUserInteractionEnabled:YES];
-         }];
-         
-         CGPoint pos = _root.view.layer.position;
-         CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
-         
-         NSMutableArray *keyTimes = [[NSMutableArray alloc] initWithCapacity:bounce ? 3 : 2];
-         NSMutableArray *values = [[NSMutableArray alloc] initWithCapacity:bounce ? 3 : 2];
-         NSMutableArray *timingFunctions = [[NSMutableArray alloc] initWithCapacity:bounce ? 3 : 2];
-         
-         [values addObject:[NSValue valueWithCGPoint:pos]];
-         [timingFunctions addObject:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn]];
-         [keyTimes addObject:[NSNumber numberWithFloat:0.0f]];
-         if (bounce) {
-         
-         duration += kMenuBounceDuration;
-         [keyTimes addObject:[NSNumber numberWithFloat:1.0f - ( kMenuBounceDuration / duration)]];
-         if (completion == DDMenuPanCompletionLeft) {
-         
-         [values addObject:[NSValue valueWithCGPoint:CGPointMake(((width/2) + span) + kMenuBounceOffset, pos.y)]];
-         
-         } else if (completion == DDMenuPanCompletionRight) {
-         
-         [values addObject:[NSValue valueWithCGPoint:CGPointMake(-((width/2) - (kMenuOverlayWidth-kMenuBounceOffset)), pos.y)]];
-         
-         } else {
-         
-         // depending on which way we're panning add a bounce offset
-         if (_panDirection == DDMenuPanDirectionLeft) {
-         [values addObject:[NSValue valueWithCGPoint:CGPointMake((width/2) - kMenuBounceOffset, pos.y)]];
-         } else {
-         [values addObject:[NSValue valueWithCGPoint:CGPointMake((width/2) + kMenuBounceOffset, pos.y)]];
-         }
-         
-         }
-         
-         [timingFunctions addObject:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut]];
-         
-         }
-         if (completion == DDMenuPanCompletionLeft) {
-         [values addObject:[NSValue valueWithCGPoint:CGPointMake((width/2) + span, pos.y)]];
-         } else if (completion == DDMenuPanCompletionRight) {
-         [values addObject:[NSValue valueWithCGPoint:CGPointMake(-((width/2) - kMenuOverlayWidth), pos.y)]];
-         } else {
-         [values addObject:[NSValue valueWithCGPoint:CGPointMake(width/2, pos.y)]];
-         }
-         
-         [timingFunctions addObject:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut]];
-         [keyTimes addObject:[NSNumber numberWithFloat:1.0f]];
-         
-         animation.timingFunctions = timingFunctions;
-         animation.keyTimes = keyTimes;
-         //animation.calculationMode = @"cubic";
-         animation.values = values;
-         animation.duration = duration;
-         animation.removedOnCompletion = NO;
-         animation.fillMode = kCAFillModeForwards;
-         [_root.view.layer addAnimation:animation forKey:nil];
-         [CATransaction commit];
-         */
     }
 }
 
@@ -494,31 +397,6 @@
 {
     self.frontViewPanGestureRecognizer.enabled = isFrontViewControllerPanGestureRecognizerEnabled;
 }
-
-/*
-- (void)updateFrontViewLeftEdgePanning
-{
-    if (self.panToRevealLeftViewMode == DRRevealViewControllerPanToRevealLeftViewModeEdge) {
-        if (!self.frontViewLeftEdgePanGestureRecognizer) {
-            self.frontViewLeftEdgePanGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(didPanFrontViewLeftEdge:)];
-            if (!self.frontViewLeftEdgePanView) {
-                
-                CGRect frame = CGRectMake(50, 50, 200, 200);
-                self.frontViewLeftEdgePanView = [UIView new];
-                self.frontViewLeftEdgePanView.frame = frame;
-                self.frontViewLeftEdgePanView.backgroundColor = [UIColor redColor];
-                [self.frontViewController.view addSubview:self.frontViewLeftEdgePanView];
-                [self.frontViewLeftEdgePanView addGestureRecognizer:self.frontViewLeftEdgePanGestureRecognizer];
-            }
-        }
-    }
-}
-
-- (void)didPanFrontViewLeftEdge:(UIPanGestureRecognizer *)gesture
-{
-    
-}
-*/
 
 - (void)setFrontViewController:(UINavigationController<DRRevealFrontControllerDelegate> *)frontViewController
 {

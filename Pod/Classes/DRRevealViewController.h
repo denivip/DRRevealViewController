@@ -12,7 +12,8 @@ typedef enum {
     DRRevealViewControllerStateFrontVisible,
     DRRevealViewControllerStateLeftVisible,
     DRRevealViewControllerStateTransitioningLeftToFront,
-    DRRevealViewControllerStateTransitioningFrontToLeft
+    DRRevealViewControllerStateTransitioningFrontToLeft,
+    DRRevealViewControllerStateCancelled
 } DRRevealViewControllerState;
 
 typedef enum {
@@ -42,7 +43,7 @@ typedef enum {
 @property (strong, nonatomic) DRRevealViewController *revealViewController;
 
 - (void)didGetWrappedByWrappingFrontViewController:(UINavigationController<DRRevealWrappingFrontControllerDelegate> *)wrappingFrontViewController;
-
+- (BOOL)canConcealToRight;
 @end
 
 @protocol DRRevealChildControllerDelegate <NSObject>
