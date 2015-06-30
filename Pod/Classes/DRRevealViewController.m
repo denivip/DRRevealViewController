@@ -623,9 +623,8 @@
 + (UIView*)getViewSnapshot:(UIView*)v {
     // Updates:YES -> Glitch in ios8!!!
     // http://stackoverflow.com/questions/25873234/snapshotviewafterscreenupdates-glitch-on-ios-8
-    //UIView *snapshotView = [v snapshotViewAfterScreenUpdates:NO];
-    //return snapshotView;
-    
+    //return [v snapshotViewAfterScreenUpdates:NO];
+   
     //UIGraphicsBeginImageContextWithOptions(v.bounds.size, v.opaque, 0.0);
     UIGraphicsBeginImageContextWithOptions(v.bounds.size, NO, 0.0);
     [v.layer renderInContext:UIGraphicsGetCurrentContext()];
